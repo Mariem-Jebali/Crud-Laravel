@@ -12,6 +12,13 @@ class EmployeeController extends Controller
     {
        $employees = Employee::latest()->paginate(5);
         return view('employees.index',compact('employees'));
+
+        /*return Employee::with('role')->get()->map(function ($item) {
+            return (object)array('id' => $item->id, 'firstname' => $item->firstname, 'lastname' => $item->lastname,
+            'birthday' => $item->birthday,'phone' => $item->phone, 'address'=>$item->address,'email' => $item->email,
+                 'role' => $item->role_id);
+        });
+        return view('employees.index');*/
     }
 
  
@@ -66,7 +73,16 @@ class EmployeeController extends Controller
 
     public function destroy(Employee $employee)
     {
-       $employee->delete();
-       return redirect()->route('employees.index') ->with('success','employee delted with success');
+      // $employee->delete();
+     //  return redirect()->route('employees.index') ->with('success','employee delted with success');
+     try {
+        $employee->delete();
+        return redirect()->route('employees.index')
+        ->with('success','Role deleted with success');
+    } catch (\Exception $e) {
+        return redirect()->route('roles.index')
+        ->with('error','Vous ne pouvait pas supprimer ce niveau car des classes sont reliés à celui-ci. 
+        Veuillez d’abord supprimer les classes relié à celui-ci.');
+    }
     }
 }

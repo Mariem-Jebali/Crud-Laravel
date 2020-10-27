@@ -53,19 +53,15 @@ class RoleController extends Controller
         return redirect()->route('roles.index') ->with('success','Role deleted with success');
 
     }
-
   
     public function destroy(Role $role)
     {
-        $role->delete();
-        return redirect()->route('roles.index')
-        ->with('success','Role deleted with success');
-
-    /*    try {
-            Classe::destroy(request('id'));
-            return response(null, 200);
+     try {
+              $role->delete();
+              return redirect()->route('roles.index')
+            ->with('success','Role deleted with success');
         } catch (\Exception $e) {
-            return response("Vous ne pouvait pas supprimer ce niveau car des classes sont reliés à celui-ci. Veuillez d’abord supprimer les classes relié à celui-ci.", 500);
-        }*/
+            return redirect()->route('roles.index')->with('error','Vous ne pouvait pas supprimer ce niveau car des classes sont reliés à celui-ci. Veuillez d’abord supprimer les classes relié à celui-ci.');
+        }
     }
 }

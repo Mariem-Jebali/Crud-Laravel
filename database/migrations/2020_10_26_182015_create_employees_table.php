@@ -24,10 +24,8 @@ class CreateEmployeesTable extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable();
             $table->biginteger('role_id')->unsigned(); 
-            $table->foreign('role_id')->references('id')->on('Roles')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');  
-
+            $table->foreign('role_id')->references('id')->on('Roles');
+       
         });
     }
 
