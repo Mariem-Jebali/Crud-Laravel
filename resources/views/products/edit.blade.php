@@ -31,14 +31,14 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Name:</strong>
-                    <input type="text" name="name" value="{{ $product->name }}" class="form-control" placeholder="Name">
+                    <input type="text" name="name" value="{{ $product->name }}" class="form-control" placeholder="">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Description</strong>
-                    <textarea class="form-control" style="height:50px" name="description" value="{{ $product->description }}"
-                        placeholder="description"></textarea>
+                    <textarea  name="description" value="{{ $product->description }}" class="form-control" style="height:50px"
+                        placeholder=""></textarea>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">

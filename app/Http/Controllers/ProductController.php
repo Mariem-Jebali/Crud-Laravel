@@ -10,12 +10,11 @@ class ProductController extends Controller
   
     public function index()
     {
-       /* $product= Product::latest()->paginate(5);
-        return view('products.index',compact('products'))->with('i',(request()->input('page',1)-1)*5);*/
+        
         $products = Product::latest()->paginate(5);
 
-        return view('products.index', compact('products'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('products.index', compact('products')) ;
+          
     }
 
  
@@ -24,23 +23,31 @@ class ProductController extends Controller
         return view ('products.create');
     }
 
-    public function store(Request $request)
-    {
-        $request->validate([
+    public function store()
+    { 
+        $product = new Product();
+        $product->name = request('name');
+        $product->description = request('description');
+        $product->price = request('price');
+        $product->save();
+        return redirect()->route('products.index')
+        ->with('success', 'Product created successfully.');
+      // return response(null, 201);
+       
+       /* $request->validate([
             'name' => 'required',
             'description' => 'required',
             'price' => 'required'
         ]);
-
         Product::create($request->all());
-
         return redirect()->route('products.index')
-            ->with('success', 'Product created successfully.');
+            ->with('success', 'Product created successfully.');*/
     }
+
 
     public function show(Product $product)
     {
-        return view ('products.create',compact('product'));
+        return view ('products.show',compact('product'));
 
     }
 

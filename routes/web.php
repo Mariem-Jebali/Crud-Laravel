@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\ProductController;
-
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\RoleController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,8 +16,13 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
+});*/
+Route::get('/', function () {
+    return view('home');
 });
-
 Route::resource('products', ProductController::class);
+Route::resource('employees',EmployeeController::class);
+Route::resource('roles', RoleController::class);
+/*Route::get('test/{id}/get-test','App\Http\Controllers\TestController@test') ; */
